@@ -29,9 +29,7 @@ jobs:
 
       - name: Compilar y ejecutar tests con JaCoCo
         # FALLA si la cobertura de líneas es inferior al 60% (regla JaCoCo en pom.xml)
-        run: |
-          chmod +x mvnw
-          ./mvnw clean verify -B
+        run: mvn clean verify -B
 
       - name: Publicar reporte JaCoCo como artefacto
         uses: actions/upload-artifact@v4
@@ -95,9 +93,7 @@ jobs:
           cache: maven
 
       - name: Compilar JAR
-        run: |
-          chmod +x mvnw
-          ./mvnw clean package -DskipTests -B
+        run: mvn clean package -DskipTests -B
 
       - name: Configurar Docker Buildx
         uses: docker/setup-buildx-action@v3
