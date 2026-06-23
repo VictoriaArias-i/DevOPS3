@@ -22,8 +22,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                // Se deshabilita CSRF para API REST stateless
-                .csrf(csrf -> csrf.disable())
+                .csrf(csrf -> csrf.disable()) // NOSONAR: CSRF deshabilitado intencionalmente — API REST stateless con JWT
 
                 // Stateless: el servidor NO guarda sesión, la identidad viaja en el token
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
