@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-app-to-mysql
+  namespace: veterinaria
+spec:
+  podSelector:
+    matchLabels:
+      app: mysql
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: veterinaria-cliente
+      ports:
+        - port: 3306
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-ingress-to-app
+  namespace: veterinaria
+spec:
+  podSelector:
+    matchLabels:
+      app: veterinaria-cliente
+  ingress:
+    - ports:
+        - port: 8080
