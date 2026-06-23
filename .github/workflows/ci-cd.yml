@@ -62,14 +62,7 @@ jobs:
         # FALLA si el Quality Gate detecta bugs, vulnerabilidades o code smells críticos
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          mvn clean verify sonar:sonar \
-            -Dsonar.projectKey=VictoriaArias-i_DevOPS3 \
-            -Dsonar.organization=victoriaarias-i \
-            -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.token=${{ secrets.SONAR_TOKEN }} \
-            -Dsonar.qualitygate.wait=true \
-            -B
+        run: mvn clean verify sonar:sonar -Dsonar.projectKey=VictoriaArias-i_DevOPS3 -Dsonar.organization=victoriaarias-i -Dsonar.host.url=https://sonarcloud.io -Dsonar.token=${{ secrets.SONAR_TOKEN }} -Dsonar.qualitygate.wait=true -B
 
   # ─── JOB 3: Análisis de seguridad con Snyk ───────────────────────────────────
   security:
