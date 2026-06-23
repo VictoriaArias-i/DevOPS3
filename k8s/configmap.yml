@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: veterinaria-config
+  namespace: veterinaria
+data:
+  DB_HOST: mysql-service
+  DB_PORT: "3306"
+  DB_NAME: clientes_db
+  DB_USERNAME: root
