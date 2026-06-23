@@ -27,6 +27,18 @@ logging:
   file:
     name: logs/clientes.log
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus,metrics
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    tags:
+      application: veterinaria-cliente
+
 app:
   jwt:
     secret: ${JWT_SECRET:clave-secreta-jwt-veterinaria-2025-duoc-uc-segura}

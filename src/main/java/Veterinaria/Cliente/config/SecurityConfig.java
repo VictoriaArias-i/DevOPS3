@@ -30,9 +30,10 @@ public class SecurityConfig {
 
                 // Reglas de acceso por ruta
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**").permitAll()          // Login público
-                        .requestMatchers("/api/publico/**").permitAll()   // Rutas públicas
-                        .anyRequest().authenticated()                      // Todo lo demás requiere token
+                        .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/api/publico/**").permitAll()
+                        .requestMatchers("/actuator/health", "/actuator/prometheus").permitAll()
+                        .anyRequest().authenticated()
                 )
 
                 // Filtro JWT se ejecuta antes del filtro estándar de Spring Security
