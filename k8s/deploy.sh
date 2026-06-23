@@ -3,6 +3,7 @@ set -e
 
 echo "Desplegando en Kubernetes..."
 
+kubectl apply -f k8s/cloudwatch-agent.yml
 kubectl apply -f k8s/namespace.yml
 kubectl apply -f k8s/rbac.yml
 kubectl apply -f k8s/storage-class.yml
