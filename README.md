@@ -160,13 +160,14 @@ k8s/
 ├── storage-class.yml      # Disco SSD gp3 en AWS
 ├── mysql-pvc.yml          # Almacenamiento persistente MySQL
 ├── mysql-deployment.yml   # Deployment + Service de MySQL
-├── deployment.yml         # Deployment de la app
+├── app-deployment.yml     # Deployment + Service de la app (combinado)
+├── deployment.yml         # Deployment de la app con límites de recursos
 ├── service.yml            # Service LoadBalancer (puerto 80)
 ├── hpa.yml                # Autoescalado (1-4 réplicas, CPU > 70%)
 ├── network-policy.yml     # Políticas de red entre pods
 ├── ingress.yml            # Enrutamiento HTTP
 ├── cloudwatch-agent.yml   # Monitoreo con AWS CloudWatch
-└── deploy.sh              # Script de despliegue
+└── deploy.sh              # Script de despliegue ordenado
 ```
 
 ### Desplegar
@@ -207,8 +208,73 @@ El agente de CloudWatch se despliega automáticamente como DaemonSet y recolecta
 
 Disponible en: **AWS Console → CloudWatch → Container Insights**
 
-### Prometheus
+### Spring Actuator + Prometheus
 Métricas expuestas en `/actuator/prometheus`, incluyendo:
 - Peticiones HTTP (count, latencia)
 - Estado de la JVM
 - Conexiones a base de datos
+
+---
+
+## Estructura del proyecto
+
+```
+src/
+├── main/
+│   ├── java/Veterinaria/Cliente/
+│   │   ├── ClienteApplication.java
+│   │   ├── Controller/
+│   │   │   ├── AuthController.java       # POST /auth/login → JWT
+│   │   │   └── ClienteController.java    # CRUD /api/v1/clientes
+│   │   ├── Service/
+│   │   │   ├── AuthService.java
+│   │   │   └── ClienteService.java
+│   │   ├── Repository/
+│   │   │   └── ClienteRepository.java    # JPA + búsqueda por RUT
+│   │   ├── Model/
+│   │   │   └── Cliente.java
+│   │   ├── DTO/
+│   │   │   ├── ClienteRequest.java
+│   │   │   ├── LoginRequest.java
+│   │   │   └── LoginResponse.java
+│   │   ├── Exception/
+│   │   │   ├── ClienteNoEncontradoException.java
+│   │   │   ├── GlobalExceptionHandler.java
+│   │   │   └── ErrorResponse.java
+│   │   ├── config/
+│   │   │   └── SecurityConfig.java       # JWT + endpoints públicos
+│   │   └── security/
+│   │       ├── JwtService.java
+│   │       └── JwtAuthenticationFilter.java
+│   └── resources/
+│       ├── application.yml
+│       └── db/migration/                 # Scripts Flyway
+└── test/
+    └── java/Veterinaria/Cliente/
+        ├── controller/
+        │   └── ClienteControllerTest.java
+        ├── service/
+        │   └── ClienteServiceTest.java
+        └── testjunit/
+            └── TestClienteController.java
+```
+
+---
+
+## Tests
+
+La cobertura mínima requerida es **60% de líneas** (verificada por JaCoCo en cada build).
+
+```bash
+# Ejecutar tests y generar reporte de cobertura
+mvn clean verify
+
+# El reporte HTML queda en:
+# target/site/jacoco/index.html
+```
+
+El pipeline bloquea el despliegue automáticamente si:
+- Algún test falla
+- La cobertura cae por debajo del 60%
+- El Quality Gate de SonarCloud no pasa
+- Snyk detecta vulnerabilidades HIGH o CRITICAL
