@@ -16,8 +16,10 @@
 	<properties>
 		<java.version>21</java.version>
 		<sonar.organization>victoriaarias-i</sonar.organization>
+		<sonar.projectKey>VictoriaArias-i_DevOPS3</sonar.projectKey>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 		<sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+		<sonar.qualitygate.wait>true</sonar.qualitygate.wait>
 	</properties>
 	<dependencies>
 		<dependency>
