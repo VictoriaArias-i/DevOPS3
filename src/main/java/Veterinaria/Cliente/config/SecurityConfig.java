@@ -1,4 +1,4 @@
-﻿package Veterinaria.Cliente.config; // NOSONAR: nombre de paquete heredado, renombrar rompería toda la estructura del proyecto
+package Veterinaria.Cliente.config; // NOSONAR: nombre de paquete heredado, renombrar rompería toda la estructura del proyecto
 
 import Veterinaria.Cliente.security.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;

@@ -1,4 +1,4 @@
-﻿package Veterinaria.Cliente.Repository; // NOSONAR: nombre de paquete heredado, renombrar rompería toda la estructura del proyecto
+package Veterinaria.Cliente.Repository; // NOSONAR: nombre de paquete heredado, renombrar rompería toda la estructura del proyecto
 
 import Veterinaria.Cliente.Model.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;
