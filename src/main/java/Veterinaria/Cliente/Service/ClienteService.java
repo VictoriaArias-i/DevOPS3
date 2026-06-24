@@ -6,7 +6,6 @@ import Veterinaria.Cliente.Model.Cliente;
 import Veterinaria.Cliente.Repository.ClienteRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,8 +15,11 @@ public class ClienteService {
 
     private static final Logger log = LoggerFactory.getLogger(ClienteService.class);
 
-    @Autowired
-    private ClienteRepository clienteRepository;
+    private final ClienteRepository clienteRepository;
+
+    public ClienteService(ClienteRepository clienteRepository) {
+        this.clienteRepository = clienteRepository;
+    }
 
     // Retorna todos los clientes registrados
     public List<Cliente> listarTodos() {
