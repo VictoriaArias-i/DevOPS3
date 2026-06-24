@@ -19,6 +19,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.*;
@@ -53,11 +54,11 @@ class ClienteControllerTest {
     void setUp() {
         cliente = new Cliente(1L, "Juan Pérez", "12345678-9",
                 "+56912345678", "juan@test.com",
-                "Av. Providencia 1234, Santiago", LocalDate.of(2024, 1, 10));
+                "Av. Providencia 1234, Santiago", LocalDate.of(2024, Month.JANUARY, 10));
 
         request = new ClienteRequest("Juan Pérez", "12345678-9",
                 "+56912345678", "juan@test.com",
-                "Av. Providencia 1234, Santiago", LocalDate.of(2024, 1, 10));
+                "Av. Providencia 1234, Santiago", LocalDate.of(2024, Month.JANUARY, 10));
     }
 
     @Test

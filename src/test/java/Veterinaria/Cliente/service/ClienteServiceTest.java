@@ -13,6 +13,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -37,11 +38,11 @@ class ClienteServiceTest {
     void setUp() {
         cliente = new Cliente(1L, "Juan Pérez", "12345678-9",
                 "+56912345678", "juan@test.com",
-                "Av. Providencia 1234, Santiago", LocalDate.of(2024, 1, 10));
+                "Av. Providencia 1234, Santiago", LocalDate.of(2024, Month.JANUARY, 10));
 
         request = new ClienteRequest("Juan Pérez", "12345678-9",
                 "+56912345678", "juan@test.com",
-                "Av. Providencia 1234, Santiago", LocalDate.of(2024, 1, 10));
+                "Av. Providencia 1234, Santiago", LocalDate.of(2024, Month.JANUARY, 10));
     }
 
     @Test
