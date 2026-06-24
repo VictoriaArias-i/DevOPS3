@@ -91,6 +91,7 @@ jobs:
         # FALLA si se detectan vulnerabilidades HIGH o CRITICAL en las dependencias
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+          MAVEN_OPTS: "-Xmx512m -Xms128m"
         run: snyk test --severity-threshold=high --all-projects --sarif-file-output=snyk.sarif
         continue-on-error: true
 
