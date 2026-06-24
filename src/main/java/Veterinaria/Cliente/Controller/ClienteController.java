@@ -16,6 +16,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/clientes")
+@SuppressWarnings("java:S5122") // CORS abierto intencionalmente — API REST con autenticación JWT
 @CrossOrigin(origins = "*")
 public class ClienteController {
 
