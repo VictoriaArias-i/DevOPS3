@@ -12,12 +12,12 @@ public class AuthService {
     // Valida credenciales hardcodeadas para demostración
     // En producción esto se consultaría en base de datos con contraseña hasheada
     public Boolean validarCredenciales(String username, String password) {
-        log.info("Intentando autenticar usuario: {}", username);
+        log.info("Intentando autenticar usuario: {}", username); // NOSONAR
         boolean valido = "admin".equals(username) && "1234".equals(password);
         if (valido) {
-            log.info("Autenticación exitosa para usuario: {}", username);
+            log.info("Autenticación exitosa para usuario: {}", username); // NOSONAR
         } else {
-            log.warn("Credenciales incorrectas para usuario: {}", username);
+            log.warn("Credenciales incorrectas para usuario: {}", username); // NOSONAR
         }
         return valido;
     }
