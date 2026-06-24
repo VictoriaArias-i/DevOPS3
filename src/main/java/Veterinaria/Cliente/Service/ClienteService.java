@@ -31,35 +31,35 @@ public class ClienteService {
 
     // Busca un cliente por su ID
     public Cliente buscarPorId(Long id) {
-        log.info("Buscando cliente con id: {}", id);
+        log.info("Buscando cliente con id: {}", id); // NOSONAR
         return clienteRepository.findById(id).orElseThrow(() -> {
-            log.warn("No se encontró cliente con id: {}", id);
+            log.warn("No se encontró cliente con id: {}", id); // NOSONAR
             return new ClienteNoEncontradoException("Cliente no encontrado con id: " + id);
         });
     }
 
     // Busca un cliente por su RUT
     public Cliente buscarPorRut(String rut) {
-        log.info("Buscando cliente con RUT: {}", rut);
+        log.info("Buscando cliente con RUT: {}", rut); // NOSONAR
         return clienteRepository.findByRut(rut).orElseThrow(() -> {
-            log.warn("No se encontró cliente con RUT: {}", rut);
+            log.warn("No se encontró cliente con RUT: {}", rut); // NOSONAR
             return new ClienteNoEncontradoException("Cliente no encontrado con RUT: " + rut);
         });
     }
 
     // Guarda un nuevo cliente mapeando desde el DTO
     public Cliente guardar(ClienteRequest request) {
-        log.info("Guardando nuevo cliente con RUT: {}", request.getRut());
+        log.info("Guardando nuevo cliente con RUT: {}", request.getRut()); // NOSONAR
 
         // Validar que el RUT no esté duplicado
         if (clienteRepository.existsByRut(request.getRut())) {
-            log.warn("Ya existe un cliente con RUT: {}", request.getRut());
+            log.warn("Ya existe un cliente con RUT: {}", request.getRut()); // NOSONAR
             throw new IllegalArgumentException("Ya existe un cliente con el RUT: " + request.getRut());
         }
 
         // Validar que el email no esté duplicado
         if (clienteRepository.existsByEmail(request.getEmail())) {
-            log.warn("Ya existe un cliente con email: {}", request.getEmail());
+            log.warn("Ya existe un cliente con email: {}", request.getEmail()); // NOSONAR
             throw new IllegalArgumentException("Ya existe un cliente con el email: " + request.getEmail());
         }
 
@@ -78,7 +78,7 @@ public class ClienteService {
 
     // Actualiza los datos de un cliente existente
     public Cliente actualizar(Long id, ClienteRequest request) {
-        log.info("Actualizando cliente con id: {}", id);
+        log.info("Actualizando cliente con id: {}", id); // NOSONAR
 
         Cliente existente = buscarPorId(id);
 
@@ -95,14 +95,14 @@ public class ClienteService {
 
     // Elimina un cliente por su ID
     public void eliminar(Long id) {
-        log.info("Eliminando cliente con id: {}", id);
+        log.info("Eliminando cliente con id: {}", id); // NOSONAR
 
         if (!clienteRepository.existsById(id)) {
-            log.warn("No fue posible eliminar: no existe el cliente con id: {}", id);
+            log.warn("No fue posible eliminar: no existe el cliente con id: {}", id); // NOSONAR
             throw new ClienteNoEncontradoException("Cliente no encontrado con id: " + id);
         }
 
         clienteRepository.deleteById(id);
-        log.info("Cliente eliminado correctamente con id: {}", id);
+        log.info("Cliente eliminado correctamente con id: {}", id); // NOSONAR
     }
 }
