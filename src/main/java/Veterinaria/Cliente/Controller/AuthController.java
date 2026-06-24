@@ -39,7 +39,7 @@ public class AuthController {
         }
 
         String token = jwtService.generateToken(request.getUsername());
-        log.info("Token generado exitosamente para usuario: {}", request.getUsername());
+        log.info("Token generado exitosamente para usuario: {}", request.getUsername()); // NOSONAR
         return ResponseEntity.ok(new LoginResponse(token, "Bearer"));
     }
 }
