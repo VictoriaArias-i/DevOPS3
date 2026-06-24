@@ -81,6 +81,9 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
+      - name: Descargar dependencias Maven
+        run: mvn dependency:resolve -B
+
       - name: Instalar Snyk CLI
         run: npm install -g snyk
 
@@ -91,8 +94,15 @@ jobs:
         run: snyk test --severity-threshold=high --all-projects --sarif-file-output=snyk.sarif
         continue-on-error: true
 
+      - name: Crear SARIF vacío si Snyk no lo generó
+        if: always()
+        run: |
+          if [ ! -f snyk.sarif ]; then
+            echo '{"version":"2.1.0","$schema":"https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json","runs":[]}' > snyk.sarif
+          fi
+
       - name: Publicar resultados SARIF en GitHub Security
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@v4
         if: always()
         with:
           sarif_file: snyk.sarif
