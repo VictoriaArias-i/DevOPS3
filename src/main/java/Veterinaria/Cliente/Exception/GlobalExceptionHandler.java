@@ -1,4 +1,4 @@
-﻿package Veterinaria.Cliente.Exception; // NOSONAR: nombre de paquete heredado, renombrar rompería toda la estructura del proyecto
+package Veterinaria.Cliente.Exception; // NOSONAR: nombre de paquete heredado, renombrar rompería toda la estructura del proyecto
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
