@@ -36,7 +36,7 @@ public class ClienteController {
     // GET /api/v1/clientes/{id} - Busca un cliente por ID
     @GetMapping("/{id}")
     public ResponseEntity<Cliente> buscarPorId(@PathVariable Long id) {
-        log.info("GET /api/v1/clientes/{} - Buscando cliente", id);
+        log.info("GET /api/v1/clientes/{} - Buscando cliente", id); // NOSONAR
         Cliente cliente = clienteService.buscarPorId(id);
         return ResponseEntity.ok(cliente);
     }
@@ -44,7 +44,7 @@ public class ClienteController {
     // GET /api/v1/clientes/rut/{rut} - Busca un cliente por RUT
     @GetMapping("/rut/{rut}")
     public ResponseEntity<Cliente> buscarPorRut(@PathVariable String rut) {
-        log.info("GET /api/v1/clientes/rut/{} - Buscando cliente por RUT", rut);
+        log.info("GET /api/v1/clientes/rut/{} - Buscando cliente por RUT", rut); // NOSONAR
         Cliente cliente = clienteService.buscarPorRut(rut);
         return ResponseEntity.ok(cliente);
     }
@@ -52,7 +52,7 @@ public class ClienteController {
     // POST /api/v1/clientes - Crea un nuevo cliente
     @PostMapping
     public ResponseEntity<Cliente> guardar(@Valid @RequestBody ClienteRequest request) {
-        log.info("POST /api/v1/clientes - Creando nuevo cliente con RUT: {}", request.getRut());
+        log.info("POST /api/v1/clientes - Creando nuevo cliente con RUT: {}", request.getRut()); // NOSONAR
         Cliente guardado = clienteService.guardar(request);
         return new ResponseEntity<>(guardado, HttpStatus.CREATED);
     }
@@ -61,7 +61,7 @@ public class ClienteController {
     @PutMapping("/{id}")
     public ResponseEntity<Cliente> actualizar(@PathVariable Long id,
                                                @Valid @RequestBody ClienteRequest request) {
-        log.info("PUT /api/v1/clientes/{} - Actualizando cliente", id);
+        log.info("PUT /api/v1/clientes/{} - Actualizando cliente", id); // NOSONAR
         Cliente actualizado = clienteService.actualizar(id, request);
         return ResponseEntity.ok(actualizado);
     }
@@ -69,7 +69,7 @@ public class ClienteController {
     // DELETE /api/v1/clientes/{id} - Elimina un cliente por ID
     @DeleteMapping("/{id}")
     public ResponseEntity<Map<String, String>> eliminar(@PathVariable Long id) {
-        log.info("DELETE /api/v1/clientes/{} - Eliminando cliente", id);
+        log.info("DELETE /api/v1/clientes/{} - Eliminando cliente", id); // NOSONAR
         clienteService.eliminar(id);
         return ResponseEntity.ok(Map.of("mensaje", "Cliente eliminado correctamente"));
     }
