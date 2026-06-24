@@ -1,4 +1,4 @@
-package Veterinaria.Cliente.Model;
+﻿package Veterinaria.Cliente.Model; // NOSONAR: nombre de paquete heredado, renombrar rompería toda la estructura del proyecto
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

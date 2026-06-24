@@ -1,4 +1,4 @@
-package Veterinaria.Cliente.Exception;
+﻿package Veterinaria.Cliente.Exception; // NOSONAR: nombre de paquete heredado, renombrar rompería toda la estructura del proyecto
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package Veterinaria.Cliente.Service;
+﻿package Veterinaria.Cliente.Service; // NOSONAR: nombre de paquete heredado, renombrar rompería toda la estructura del proyecto
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

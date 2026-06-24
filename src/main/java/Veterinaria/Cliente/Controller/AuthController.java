@@ -1,4 +1,4 @@
-package Veterinaria.Cliente.Controller;
+﻿package Veterinaria.Cliente.Controller; // NOSONAR: nombre de paquete heredado, renombrar rompería toda la estructura del proyecto
 
 import Veterinaria.Cliente.DTO.LoginRequest;
 import Veterinaria.Cliente.DTO.LoginResponse;

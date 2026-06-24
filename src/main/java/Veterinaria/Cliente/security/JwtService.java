@@ -1,4 +1,4 @@
-package Veterinaria.Cliente.security;
+﻿package Veterinaria.Cliente.security; // NOSONAR: nombre de paquete heredado, renombrar rompería toda la estructura del proyecto
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

@@ -1,4 +1,4 @@
-package Veterinaria.Cliente.DTO;
+﻿package Veterinaria.Cliente.DTO; // NOSONAR: nombre de paquete heredado, renombrar rompería toda la estructura del proyecto
 
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -17,7 +17,7 @@ public class ClienteRequest {
     private String nombre;
 
     @NotBlank(message = "El RUT es obligatorio")
-    @Pattern(regexp = "^[0-9]{7,8}-[0-9Kk]$", message = "El RUT debe tener formato 12345678-9")
+    @Pattern(regexp = "^\\d{7,8}-[0-9Kk]$", message = "El RUT debe tener formato 12345678-9")
     private String rut;
 
     @NotBlank(message = "El teléfono es obligatorio")
